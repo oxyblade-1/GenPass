@@ -17,7 +17,7 @@ le type de mot de passe que vous voulez:
 * caractère
 * chiffres
 * ponctuation
-* longeur (par défaut 10) -> max 100 caractère
+* longeur (par défaut 10) -> max 100 caractères
 
 ![setting](https://github.com/oxyblade-1/GenPass/blob/main/maquette/setting.png)
 
@@ -25,12 +25,11 @@ le type de mot de passe que vous voulez:
 
 > Connaissance requise au projet
 
-* Utilisationde Tkinter
+* Utilisation de Tkinter
 * Création d'onglets -> nouvelle fenêtre 
 * gestion des images
 * Utilisation des modules "random" & "string"
 
 > Problème ?
 
-L'un des gros problème actuelle est lors de la sauvegarde des données le mot de passe n'est pas cryptée
-(je n'est pas voulu m'éloigné dans le projet car ceci est de base qu'un entrainement).
+L'un des gros problème actuelle est lors de la sauvegarde des données le mot de passe n'est pas crypté ce qui fait que les données sauvegarder sur l'ordinateur ne sont pas sécurisé contre des pirates et autres (recherche de solution en cour).
