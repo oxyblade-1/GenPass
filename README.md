@@ -1,4 +1,4 @@
-# GenPass (le générateur)
+# GenPass (le générateur) [Projet en cour]
 
 > Utilitée ?
 
@@ -20,13 +20,9 @@ le type de mot de passe que vous voulez:
 > Connaissance requise au projet
 
 * Utilisationde Tkinter
- * Création d'onglets -> nouvelle fenêtre 
- * gestion des images
- *
- *
+* Création d'onglets -> nouvelle fenêtre 
+* gestion des images
 * Utilisation des modules "random" & "string"
-*
-*
 
 > Problème ?
 
