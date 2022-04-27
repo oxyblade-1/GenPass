@@ -6,7 +6,7 @@ from PIL import ImageTk, Image
 root = Tk()
 root.geometry("500x500")
 root.resizable(width=False, height=False)# blocked enlarge
-root.title('generate_password')
+root.title('Genpass')
 root.iconbitmap('asset/logo.ico')
 root.config(background='#21282C')# default background
 
@@ -19,6 +19,6 @@ menu.add_cascade(label="File", menu=file_menu)
 
 root.config(menu=menu)
 
-#exit
+#print
 root.mainloop()
 
