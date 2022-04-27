@@ -1,4 +1,4 @@
-#Documentation TKinter
+# Documentation TKinter (non officielle)
 
 Tkinter est un module python très utile pour la programmation d'interface graphique.
 Sa syntexte reste globalement explicite et permet aux utilisateur d'executer leur code
@@ -49,8 +49,22 @@ root.config(background='hexacode')
 #ou un code coleur red, green, blue, ...
 ```
 
-
 > Label (Texte)
+
+Le label permet d'afficher du texte sur la fenêtre
+il est d'ailleur possible de le configurer avec différent parramètre.
+(Tout les parramètre dans le Label ne sont pas obligatoire, vous pouvez donc en ajouter ou en retirer à l'exeption ici de `root`)
+
+```py
+text = Label(root, text="text", font=("FontName", 15), fg="hexacode", bg="hexacode")
+#bg: background -> couleur de fond du texte
+#fg: fontground -> couleur d'écriture de la police
+```
+/!\ Il est possible de mettre le texte sous format image nous en parlerons juste après !
+
+> Boutton
+
+> Frame
 
 
 
