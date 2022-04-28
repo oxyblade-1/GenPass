@@ -1,6 +1,7 @@
 #import password.py
 from tkinter import *
 from PIL import ImageTk, Image
+import pyperclip
 import string
 import random
 
@@ -72,28 +73,17 @@ input_l = Label(root, image=new_inputlabel, borderwidth=0, bg="#21282C")
 input_l.place(x=150, y=190)
 
 #password message
-password = Label(root, text="- - - -", font=("Pixeled", 9), fg="#003F3F", bg="#808080")
-password.place(x=225, y=195)
+password_message = Label(root, text=" ", font=("Pixeled", 9), fg="#003F3F", bg="#808080")
+password_message.place(x=200, y=195)
 
 #Bar Image
 barre = Label(root, image=new_barre, borderwidth=0, bg="#21282C")
 barre.place(x=25, y=80)
 
-######## Boutton #########
-
-#RegenBtn
-regen = Button(root, image=new_regenbtn, borderwidth=0, bg="#21282C", activebackground="#21282C", command=password)
-regen.place(x=200, y=250)
-
-#CopyBtn
-copy = Button(root, image=new_copybtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
-copy.place(x=380, y=190)
-
-#Setting
-setting = Button(root, image=new_settingbtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
-setting.place(x=400, y=380)
+######## Function #########
 
 def password():
+	global passe
 	lettres = string.ascii_letters
 	chiffres = string.digits
 	ponc = string.punctuation
@@ -104,8 +94,26 @@ def password():
 	char += lettres + chiffres + ponc
 
 	passe = "".join(random.choices(char, k=l))
-	print(passe)
-	password.config(text=f"{passe}")
+	password_message.config(text=f"{passe}")
+
+def copy_paste(text):
+	copy = pyperclip.copy(text)
+	paste = pyperclip.paste(copy)
+
+
+######## Boutton #########
+
+#CopyBtn
+copy = Button(root, image=new_copybtn, borderwidth=0, bg="#21282C", activebackground="#21282C", command=lambda: copy_paste(passe))
+copy.place(x=380, y=190)
+
+#Setting
+setting = Button(root, image=new_settingbtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
+setting.place(x=400, y=380)
+
+#RegenBtn
+regen = Button(root, image=new_regenbtn, borderwidth=0, bg="#21282C", activebackground="#21282C", command=password)
+regen.place(x=200, y=250)
 
 ######## Print #########
 root.mainloop()
