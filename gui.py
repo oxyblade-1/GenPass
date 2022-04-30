@@ -1,4 +1,3 @@
-#import password.py
 from tkinter import *
 from PIL import ImageTk, Image
 import pyperclip
@@ -11,18 +10,8 @@ root = Tk()
 root.geometry("500x500")
 root.resizable(width=False, height=False)# blocked enlarge
 root.title('Genpass')
-root.iconbitmap('asset/logo.ico')
+root.iconbitmap('asset/ico/logo.ico')
 root.config(background='#21282C')# default background
-
-######## NavBar #########
-
-menu = Menu(root)
-file_menu = Menu(menu, tearoff=0)
-file_menu.add_command(label="Save")
-file_menu.add_command(label="Exit", command=root.quit)
-menu.add_cascade(label="File", menu=file_menu)
-
-root.config(menu=menu)
 
 ######## Import Image #########
 
@@ -98,7 +87,64 @@ def password():
 
 def copy_paste(text):
 	copy = pyperclip.copy(text)
-	paste = pyperclip.paste(copy)
+
+def setting_window():
+
+	######## Setting window Config #########
+
+	setting = Toplevel()
+	setting.geometry("450x450")
+	setting.resizable(width=False, height=False)# blocked enlarge
+	setting.title('Setting')
+	setting.iconbitmap('asset/ico/logo.ico')
+	setting.config(background='#21282C')# default background
+
+	######## Import Image #########
+
+	applybtn = Image.open("asset/applybtn.png")
+	cancelbtn = Image.open("asset/cancelbtn.png")
+	#bg = PhotoImage(file="asset/setting_font.png")
+
+	######## Resize Image #########
+
+	#apply
+	resized_applybtn = applybtn.resize((120, 60), Image.ANTIALIAS)
+	new_applybtn = ImageTk.PhotoImage(resized_applybtn)
+
+	#cancel
+	resized_cancelbtn = cancelbtn.resize((120, 60), Image.ANTIALIAS)
+	new_cancelbtn = ImageTk.PhotoImage(resized_cancelbtn)
+
+	######## Frame #########
+
+	frame = Frame(setting)
+	frame.pack(side=BOTTOM)
+
+	######## Entry #########
+
+	lenght = Entry(setting, font=("Pixeled", 7), fg="#003F3F", bg="#808080", width=8)
+	lenght.place(x=100, y=200)
+
+	######## Label #########
+
+	#fontground = Label(setting, image=bg)
+	#fontground.place(x=0, y=0, relwidth=1, relheight=1)
+	#relwidth/ relheight combler les bordures !
+
+	#Lenght
+
+	#
+
+	######## Button #########
+
+	cancel = Button(frame, image=new_cancelbtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
+	cancel.pack(side=LEFT)
+	apply_ = Button(frame, image=new_applybtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
+	apply_.pack(side=RIGHT)
+
+
+	######## Print setting #########
+	setting.mainloop()
 
 
 ######## Boutton #########
@@ -108,13 +154,13 @@ copy = Button(root, image=new_copybtn, borderwidth=0, bg="#21282C", activebackgr
 copy.place(x=380, y=190)
 
 #Setting
-setting = Button(root, image=new_settingbtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
-setting.place(x=400, y=380)
+setting_ = Button(root, image=new_settingbtn, borderwidth=0, bg="#21282C", activebackground="#21282C", command=setting_window)
+setting_.place(x=400, y=380)
 
 #RegenBtn
 regen = Button(root, image=new_regenbtn, borderwidth=0, bg="#21282C", activebackground="#21282C", command=password)
 regen.place(x=200, y=250)
 
-######## Print #########
-root.mainloop()
 
+######## Print root #########
+root.mainloop()
