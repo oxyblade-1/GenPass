@@ -46,24 +46,24 @@ new_inputlabel = ImageTk.PhotoImage(resized_input)
 ######## Label #########
 
 #main message "password"
-pass_label = Label(root, text="password", font=("Pixeled", 15), fg="#00BCBC", bg="#21282C")
-pass_label.place(x=170, y=100)
+pass_label = Label(root, text="PASSWORD", font=("Poppins", 15), fg="#00BCBC", bg="#21282C")
+pass_label.place(x=190, y=150)
 
 #number Max Bar
-copy_label = Label(root, text="20 words", font=("Pixeled", 12), fg="#404040", bg="#21282C")
-copy_label.place(x=30, y=30)
+copy_label = Label(root, text="20 words", font=("Poppins", 12), fg="#404040", bg="#21282C")
+copy_label.place(x=35, y=55)
 
 #message "regenerate"
-regen_label = Label(root, text="regenerate", font=("Pixeled", 10), fg="#1E2122", bg="#21282C")
-regen_label.place(x=200, y=300)
+regen_label = Label(root, text="regenerate", font=("Poppins", 10), fg="#404040", bg="#21282C")
+regen_label.place(x=220, y=315)
 
 #Input Image (au dessus de password message)
 input_l = Label(root, image=new_inputlabel, borderwidth=0, bg="#21282C")
 input_l.place(x=150, y=190)
 
 #password message
-password_message = Label(root, text=" ", font=("Pixeled", 9), fg="#003F3F", bg="#808080")
-password_message.place(x=200, y=195)
+password_message = Label(root, text=" ", font=("Poppins", 12), fg="#003F3F", bg="#808080")
+password_message.place(x=215, y=200)
 
 #Bar Image
 barre = Label(root, image=new_barre, borderwidth=0, bg="#21282C")
@@ -87,6 +87,9 @@ def password():
 
 def copy_paste(text):
 	copy = pyperclip.copy(text)
+
+def lenght_get(e):
+	e.get()
 
 def setting_window():
 
@@ -122,8 +125,8 @@ def setting_window():
 
 	######## Entry #########
 
-	lenght = Entry(setting, font=("Pixeled", 7), fg="#003F3F", bg="#808080", width=8)
-	lenght.place(x=100, y=200)
+	lenght = Entry(setting, font=("Poppins", 10), fg="#003F3F", bg="#808080", width=8)
+	lenght.place(x=350, y=150)
 
 	######## Label #########
 
@@ -131,13 +134,24 @@ def setting_window():
 	#fontground.place(x=0, y=0, relwidth=1, relheight=1)
 	#relwidth/ relheight combler les bordures !
 
-	#Lenght
+	lenght_label = Label(setting, text="lenght", font=("Poppins", 10), fg="#404040", bg="#21282C")
+	lenght_label.place(x=360, y=120)
 
-	#
+	#letter
+	lenght_label = Label(setting, text="LETTER", font=("Poppins", 10), fg="#404040", bg="#21282C")
+	lenght_label.place(x=50, y=100)
+
+	#number
+	lenght_label = Label(setting, text="NUMBER", font=("Poppins", 10), fg="#404040", bg="#21282C")
+	lenght_label.place(x=50, y=150)
+
+	#punctuation
+	lenght_label = Label(setting, text="PUNCTUATION", font=("Poppins", 10), fg="#404040", bg="#21282C")
+	lenght_label.place(x=50, y=200)
 
 	######## Button #########
 
-	cancel = Button(frame, image=new_cancelbtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
+	cancel = Button(frame, image=new_cancelbtn, borderwidth=0, bg="#21282C", activebackground="#21282C", command=setting.destroy)
 	cancel.pack(side=LEFT)
 	apply_ = Button(frame, image=new_applybtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
 	apply_.pack(side=RIGHT)
