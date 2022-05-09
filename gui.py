@@ -1,8 +1,11 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import pyperclip
+import os
 import string
 import random
+
+os.system("cls")
 
 ######## WindowConfig #########
 
@@ -71,13 +74,17 @@ barre.place(x=25, y=80)
 
 ######## Function #########
 
+def copy_paste(text):
+	pyperclip.copy(text)
+
+
 def password():
 	global passe
 	lettres = string.ascii_letters
 	chiffres = string.digits
 	ponc = string.punctuation
 
-	l = 10 #lenght (default)
+	l = 10 or pass_lenght #lenght (default)
 
 	char = ""
 	char += lettres + chiffres + ponc
@@ -85,11 +92,6 @@ def password():
 	passe = "".join(random.choices(char, k=l))
 	password_message.config(text=f"{passe}")
 
-def copy_paste(text):
-	copy = pyperclip.copy(text)
-
-def lenght_get(e):
-	e.get()
 
 def setting_window():
 
@@ -106,6 +108,14 @@ def setting_window():
 
 	applybtn = Image.open("asset/applybtn.png")
 	cancelbtn = Image.open("asset/cancelbtn.png")
+
+	#True
+	on_onbtn = Image.open("asset/button/Tbtn_on.png")
+	on_offbtn = Image.open("asset/button/Tbtn_off.png")
+
+	#False
+	off_offbtn = Image.open("asset/button/Fbtn_off.png")
+	off_onbtn = Image.open("asset/button/Fbtn_on.png")
 	#bg = PhotoImage(file="asset/setting_font.png")
 
 	######## Resize Image #########
@@ -118,6 +128,20 @@ def setting_window():
 	resized_cancelbtn = cancelbtn.resize((120, 60), Image.ANTIALIAS)
 	new_cancelbtn = ImageTk.PhotoImage(resized_cancelbtn)
 
+	#True
+	resized_on_onbtn = on_onbtn.resize((30, 30), Image.ANTIALIAS)
+	new_on_onbtn = ImageTk.PhotoImage(resized_on_onbtn)
+
+	resized_on_offbtn = on_offbtn.resize((30, 30), Image.ANTIALIAS)
+	new_on_offbtn = ImageTk.PhotoImage(resized_on_offbtn)
+
+
+	# #False
+	# resized_applybtn = applybtn.resize((120, 60), Image.ANTIALIAS)
+	# new_applybtn = ImageTk.PhotoImage(resized_applybtn)
+	# resized_applybtn = applybtn.resize((120, 60), Image.ANTIALIAS)
+	# new_applybtn = ImageTk.PhotoImage(resized_applybtn)
+
 	######## Frame #########
 
 	frame = Frame(setting)
@@ -127,6 +151,54 @@ def setting_window():
 
 	lenght = Entry(setting, font=("Poppins", 10), fg="#003F3F", bg="#808080", width=8)
 	lenght.place(x=350, y=150)
+
+	######## Function #########
+
+	def btn_changer1():
+		#Button_letter
+		on_label = Radiobutton(setting, image=new_on_onbtn, borderwidth=0, value=1, indicatoron=0, activebackground="#21282C", bg="#21282C", command=btn_changer1)
+		on_label.place(x=190, y=100)
+
+		#Button_number
+		on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=2, indicatoron=0, activebackground="#21282C", bg="#21282C")
+		on_label.place(x=190, y=170)
+
+		#Button_punctuation
+		on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=3, indicatoron=0, activebackground="#21282C", bg="#21282C")
+		on_label.place(x=190, y=270)
+
+	def btn_changer2():
+		#Button_letter
+		on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=1, indicatoron=0, activebackground="#21282C", bg="#21282C", command=btn_changer1)
+		on_label.place(x=190, y=100)
+
+		#Button_number
+		on_label = Radiobutton(setting, image=new_on_onbtn, borderwidth=0, value=2, indicatoron=0, activebackground="#21282C", bg="#21282C")
+		on_label.place(x=190, y=170)
+
+		#Button_punctuation
+		on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=3, indicatoron=0, activebackground="#21282C", bg="#21282C")
+		on_label.place(x=190, y=270)
+
+	def btn_changer3():
+
+		#Button_letter
+		on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=1, indicatoron=0, activebackground="#0A2E00", bg="#21282C", command=btn_changer1)
+		on_label.place(x=190, y=100)
+
+		#Button_number
+		on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=2, indicatoron=0, activebackground="#0A2E00", bg="#21282C")
+		on_label.place(x=190, y=170)
+
+		#Button_punctuation
+		on_label = Radiobutton(setting, image=new_on_onbtn, borderwidth=0, value=3, indicatoron=0, activebackground="#0A2E00", bg="#21282C")
+		on_label.place(x=190, y=270)
+
+	def lenght_get():
+		global pass_lenght
+		pass_lenght = lenght.get()
+		print("\033[32msave lenght")
+
 
 	######## Label #########
 
@@ -138,22 +210,36 @@ def setting_window():
 	lenght_label.place(x=360, y=120)
 
 	#letter
-	lenght_label = Label(setting, text="LETTER", font=("Poppins", 10), fg="#404040", bg="#21282C")
-	lenght_label.place(x=50, y=100)
+	letter_label = Label(setting, text="LETTER", font=("Poppins", 12), fg="#004C4C", bg="#007F7F")
+	letter_label.place(x=70, y=100)
 
 	#number
-	lenght_label = Label(setting, text="NUMBER", font=("Poppins", 10), fg="#404040", bg="#21282C")
-	lenght_label.place(x=50, y=150)
+	number_label = Label(setting, text="NUMBER", font=("Poppins", 12), fg="#004C4C", bg="#007F7F")
+	number_label.place(x=70, y=180)
 
 	#punctuation
-	lenght_label = Label(setting, text="PUNCTUATION", font=("Poppins", 10), fg="#404040", bg="#21282C")
-	lenght_label.place(x=50, y=200)
+	punctuation_label = Label(setting, text="PUNCTUATION", font=("Poppins", 12), fg="#004C4C", bg="#007F7F")
+	punctuation_label.place(x=50, y=270)
 
 	######## Button #########
+	a = IntVar()
+	b = IntVar()
+
+	#Button_letter
+	on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=1, indicatoron=0, activebackground="#0A2E00", bg="#21282C", command=btn_changer1)
+	on_label.place(x=190, y=100)
+
+	#Button_number
+	on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=2, indicatoron=0, activebackground="#0A2E00", bg="#21282C", command=btn_changer2)
+	on_label.place(x=190, y=170)
+
+	#Button_punctuation
+	on_label = Radiobutton(setting, image=new_on_offbtn, borderwidth=0, value=3, indicatoron=0, activebackground="#0A2E00", bg="#21282C", command=btn_changer3)
+	on_label.place(x=190, y=270)
 
 	cancel = Button(frame, image=new_cancelbtn, borderwidth=0, bg="#21282C", activebackground="#21282C", command=setting.destroy)
 	cancel.pack(side=LEFT)
-	apply_ = Button(frame, image=new_applybtn, borderwidth=0, bg="#21282C", activebackground="#21282C")
+	apply_ = Button(frame, image=new_applybtn, borderwidth=0, bg="#21282C", activebackground="#21282C", command=lenght_get)
 	apply_.pack(side=RIGHT)
 
 
